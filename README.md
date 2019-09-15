@@ -6,13 +6,19 @@ yeterli uygulama Db i kendisi kuracaktır.Uygulamayı kurulurken default olarak 
 userdan token almanız gerekmektedir.(Username:Digiturk Password:Qwer!234)
 
 -Uygulamada aktif olarak Repository pattern ve Mvc patternlerini kullandım
+
 -.Net üzerinde daha önceden de Api tecrübem olmuştu
+
 -Daha fazla vaktim olsaydı
+
 1)Dto olan kısımlar için Crud işlemleri için ayrı veri yapıları hazırlardım
+
 2)Loglama için belki Nlog kullanılabilirdi.
-3)Article modeli için Api Controller larında direk servisleri kullanmak yerine 
-Business katmanında Manager içerisinde repoya ulaşmayı sağlayabilirdim
+
+3)Article modeli için Api Controller larında direk servisleri kullanmak yerine Business katmanında Manager içerisinde repoya ulaşmayı sağlayabilirdim
+
 4)Article içerisine eklediğim Comment kısmı içinde yapı oluştururdum
+
 5)User oluşturmak içinde yapı ekleyebilirdim
 
 Api Dökümantasyon
