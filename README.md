@@ -31,6 +31,7 @@ Get https://localhost:44358/api/Articles/SearchInContent/{content}
 
 Makale ekleme
 Post https://localhost:44358/api/Articles/Add
+
 {
     "title": "başlık içeriği",
     "content": "makale içeriği",
@@ -38,6 +39,7 @@ Post https://localhost:44358/api/Articles/Add
 
 Makale güncelleme
 Post https://localhost:44358/api/Articles/Update
+
 {
     "Id":{id}
     "title": "başlık içeriği",
