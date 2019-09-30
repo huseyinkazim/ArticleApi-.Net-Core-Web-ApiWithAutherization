@@ -57,15 +57,20 @@ namespace Core.Repository.Services
         {
             return _context.Articles.Where(i => i.Content.Contains(content)).ToList();
         }
+        //Attach dediğimizde _context.Entry(article) state i Unchanged oluyor _context.Entry(article).Property(i => i.Title).IsModified = true; bu şekilde sadece property e değişkenlik atıyoruz
+        //_context.Entry(article).State EnityState.Modified dersek tüm modele değişiklik atıyoruz aynı şekilde
+        //Attach edilen article.Content = "Test amaçlı içerik mesajı"; dediğimizde modelde değişiklik gördüğü için tüm modelin state i Modified edilmiş oluyor
         public int Update(Article article)
         {
             if (_context.Articles.Any(i => i.Id == article.Id))
             {
                 article.ModifiedOn = DateTime.Now;
+                //_context.Entry(article).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                 _context.Attach(article);
                 _context.Entry(article).Property(i => i.Title).IsModified = true;
                 _context.Entry(article).Property(i => i.Content).IsModified = true;
                 _context.Entry(article).Property(i => i.ModifiedOn).IsModified = true;
+                //article.Content = "Test amaçlı içerik mesajı";
 
                 return _context.SaveChanges();
             }

@@ -81,6 +81,7 @@ namespace Core.Service
 
             if (env.IsDevelopment())
             {
+				app.UseExceptionHandler("/Home/Error");
                 app.UseDeveloperExceptionPage();
             }
             else

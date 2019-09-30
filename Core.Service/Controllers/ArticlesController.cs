@@ -19,13 +19,13 @@ namespace Core.Service.Controllers
     [Authorize]
     public class ArticlesController : ControllerBase
     {
-        private readonly IArticleService _articleService;
+        private readonly ArticleManager _articleManager;
         private readonly LogManager _logManager;
         private string username => User.Claims.FirstOrDefault().Value.ToUpper();
         private const string controllername = "Articles";
         public ArticlesController(IArticleService articleService, ILoggerService loggerService)
         {
-            this._articleService = articleService;
+            this._articleManager = new ArticleManager(articleService);
             this._logManager = new LogManager(loggerService);
         }
 
@@ -37,7 +37,7 @@ namespace Core.Service.Controllers
 
             try
             {
-                var model = _articleService.GetArticles();
+                var model = _articleManager.GetArticles();
                 _logManager.Info(controllername, methodname, "Method başarılı şekilde çalışmıştır", username);
                 if (model.Count() != 0)
                     return Ok(model);
@@ -60,7 +60,7 @@ namespace Core.Service.Controllers
             var methodname = "GetById";
             try
             {
-                var model = _articleService.GetById(id);
+                var model = _articleManager.GetById(id);
                 _logManager.Info(controllername, methodname, "Method başarılı şekilde çalışmıştır", username);
                 if (model == null)
                 {
@@ -87,7 +87,7 @@ namespace Core.Service.Controllers
             try
             {
 
-                var model = _articleService.SearchInTitleArticles(title);
+                var model = _articleManager.SearchInTitleArticles(title);
                 _logManager.Info(controllername, methodname, "Method başarılı şekilde çalışmıştır", username);
                 if (model.Count() != 0)
                     return Ok(model);
@@ -111,7 +111,7 @@ namespace Core.Service.Controllers
             try
             {
 
-                var model = _articleService.SearchInContentArticles(content);
+                var model = _articleManager.SearchInContentArticles(content);
                 _logManager.Info(controllername, methodname, "Method başarılı şekilde çalışmıştır", username);
                 if (model.Count() != 0)
                     return Ok(model);
@@ -134,7 +134,7 @@ namespace Core.Service.Controllers
             var methodname = "SearchInContent";
             try
             {
-                var id = _articleService.Add(article);
+                var id = _articleManager.Add(article);
                 _logManager.Info(controllername, methodname, "Method başarılı şekilde çalışmıştır", username);
 
                 if (id != 0)
@@ -161,7 +161,7 @@ namespace Core.Service.Controllers
             {
                 if (article.Id == 0)
                     return BadRequest("Id alanı zorunludur.");
-                var isUpdated = _articleService.Update(article);
+                var isUpdated = _articleManager.Update(article);
 
 
                 if (isUpdated > 0)
@@ -189,7 +189,7 @@ namespace Core.Service.Controllers
             try
             {
 
-                var isDeleted = _articleService.Delete(new ArticleDto { Id = id });
+                var isDeleted = _articleManager.Delete(new ArticleDto { Id = id });
 
                 if (isDeleted > 0)
                 {
@@ -209,20 +209,7 @@ namespace Core.Service.Controllers
                 return BadRequest("Beklenmedik bir hata oluştu.");
             }
         }
-        private Dictionary<string, string> GetParameters<T>(T model)
-        {
-            var typeofT = typeof(T);
-            var result = new Dictionary<string, string>();
-            foreach (var item in typeofT.GetProperties())
-            {
-                var value = typeofT.GetProperty(item.Name).GetValue(model);
-                if (value != null)
-                {
-                    result.Add(item.Name, value.ToString());
-                }
-            }
-            return result;
-        }
+
 
     }
 }
