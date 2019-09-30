@@ -62,10 +62,25 @@ namespace Core.Repository.Services
         //Attach edilen article.Content = "Test amaçlı içerik mesajı"; dediğimizde modelde değişiklik gördüğü için tüm modelin state i Modified edilmiş oluyor
         public int Update(Article article)
         {
+            //var s = new Article();
+       
+            // s = new Article
+            //{
+            //    Id = 1,
+            //    Content = "Bu bir test makalesidir.Digiturk için yapılmıştır.",
+            //    ModifiedOn = DateTime.Now,
+            //    CreatedOn=DateTime.Now.AddDays(-15),
+            //    //Title="Bla bla",//Bu alan boş bırakılınca null basıyor 
+            //    IsActive=true                
+            //};
+            //_context.Articles.Update(s);//Aynısı  _context.Entry(article).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            //_context.SaveChanges();
+
             if (_context.Articles.Any(i => i.Id == article.Id))
             {
                 article.ModifiedOn = DateTime.Now;
                 //_context.Entry(article).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+
                 _context.Attach(article);
                 _context.Entry(article).Property(i => i.Title).IsModified = true;
                 _context.Entry(article).Property(i => i.Content).IsModified = true;
