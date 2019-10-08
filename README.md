@@ -3,7 +3,7 @@
 -Veri tabanı kurulumu için sadece Core.Service uygulama içerisindeki appsettings dosyasında
 ConnectionString altındaki HtosunLocal içerisndeki Server alanına kendi Server adınızı yazmanız 
 yeterli uygulama Db i kendisi kuracaktır.Uygulamayı kurulurken default olarak oluşturulacak
-userdan token almanız gerekmektedir.(Username:Digiturk Password:Qwer!234)
+userdan token almanız gerekmektedir.(Username:contoso Password:Qwer!234)
 
 Api Dökümantasyon
 
