@@ -22,19 +22,19 @@ namespace Core.EntityLayer.Context.Seed
             {
                 ApplicationUser defaultUser = new ApplicationUser
                 {
-                    Email="default@digiturk.com",
+                    Email="default@contoso.com",
                     SecurityStamp=Guid.NewGuid().ToString(),
-                    UserName= configuration["Digiturk:DefaultUserName"]
+                    UserName= configuration["Contoso:DefaultUserName"]
                 };
-                 usermanager.CreateAsync(defaultUser, configuration["Digiturk:DefaultPassword"]);
+                 usermanager.CreateAsync(defaultUser, configuration["Contoso:DefaultPassword"]);
             }
             if (!context.Articles.Any())
             {
                 Article defaultArticle = new Article
                 {
                     IsActive = true,
-                    Content = "Bu bir test makalesidir.Digiturk için yapılmıştır.",
-                    Title = "Digiturk Web Api .Net Core",
+                    Content = "Bu bir test makalesidir.Contoso için yapılmıştır.",
+                    Title = "Contoso Web Api .Net Core",
                     CreatedOn = DateTime.Now,
                     ModifiedOn = DateTime.Now
                 };

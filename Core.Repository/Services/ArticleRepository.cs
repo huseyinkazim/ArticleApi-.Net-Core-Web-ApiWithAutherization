@@ -63,11 +63,11 @@ namespace Core.Repository.Services
         public int Update(Article article)
         {
             //var s = new Article();
-       
+
             // s = new Article
             //{
             //    Id = 1,
-            //    Content = "Bu bir test makalesidir.Digiturk için yapılmıştır.",
+            //    Content = "Bu bir test makalesidir.Contoso için yapılmıştır.",
             //    ModifiedOn = DateTime.Now,
             //    CreatedOn=DateTime.Now.AddDays(-15),
             //    //Title="Bla bla",//Bu alan boş bırakılınca null basıyor 
